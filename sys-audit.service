@@ -1,0 +1,15 @@
+[Unit]
+Description=The sys-audit systemd service
+
+[Service]
+Type=single
+PIDFile=/run/sysaudit.pid
+ExecStart=/usr/local/bin/sys-audit
+ExecReload=/bin/kill -s HUP $MAINPID
+KillSignal=SIGQUIT
+TimeoutStopSec=5
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
+
